@@ -1,0 +1,16 @@
+settings:
+  base_url: 'https://search.yahoo.com/local/s;_ylt=AjUlJbrCKf75zGMNBKcNgLCGNcIF;_ylv=3'
+  parameters:
+    - key: p
+      property: name
+    - key: addr
+      property: address
+  mapping:
+    name:
+      css: '.lrr-title.M-0.Fz-32 a'
+    address:
+      css: '.lrr-info.Grid .lrr-loc.NoLinkColor.Fz-m'
+    phone_number:
+      css: '.lrr-phone.M-0'
+    url:
+      xpath: '//*[@class="lrr-title M-0 Fz-32"]/a/@href'
