@@ -1,16 +1,15 @@
 settings:
-  base_url: 'https://search.yahoo.com/local/s;_ylt=AjUlJbrCKf75zGMNBKcNgLCGNcIF;_ylv=3'
+  page_url: 'https://foursquare.com'
+  base_url: 'https://foursquare.com/explore?mode=url'
   parameters:
-    - key: p
+    - key: q
       property: name
-    - key: addr
-      property: address
+    - key: near
+      property: long_address
   mapping:
     name:
-      css: '.lrr-title.M-0.Fz-32 a'
+      css: '#resultsView .recommendationList .card:first .venueName h2 a'
     address:
-      css: '.lrr-info.Grid .lrr-loc.NoLinkColor.Fz-m'
-    phone_number:
-      css: '.lrr-phone.M-0'
+      css: '#resultsView .recommendationList .card:first .venueAddress'
     url:
-      xpath: '//*[@class="lrr-title M-0 Fz-32"]/a/@href'
+      xpath: '//*[@id="results"]/ul/li[1]/div[2]/div[1]/div[1]/div/div[1]/h2/a/@href'

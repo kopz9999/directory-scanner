@@ -1,16 +1,17 @@
 settings:
-  base_url: 'https://search.yahoo.com/local/s;_ylt=AjUlJbrCKf75zGMNBKcNgLCGNcIF;_ylv=3'
+  page_url: 'http://www.mapquest.com'
+  base_url: 'http://www.mapquest.com/search/results'
+  html_fields:
+    - full_address
   parameters:
-    - key: p
-      property: name
-    - key: addr
-      property: address
+    - key: query
+      property:
+        - name
+        - small_address
   mapping:
     name:
-      css: '.lrr-title.M-0.Fz-32 a'
-    address:
-      css: '.lrr-info.Grid .lrr-loc.NoLinkColor.Fz-m'
-    phone_number:
-      css: '.lrr-phone.M-0'
+      css: 'ol.search-results li:first span h3 a'
+    full_address:
+      css: 'ol.search-results li:first span span'
     url:
-      xpath: '//*[@class="lrr-title M-0 Fz-32"]/a/@href'
+      xpath: '//ol[@class="search-results"]/li[1]/span/h3/a/@href'

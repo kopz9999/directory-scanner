@@ -1,16 +1,20 @@
 settings:
-  base_url: 'https://search.yahoo.com/local/s;_ylt=AjUlJbrCKf75zGMNBKcNgLCGNcIF;_ylv=3'
+  page_url: 'http://www.yelp.com'
+  html_fields:
+    - full_address
+  base_url: 'http://www.yelp.com/search'
   parameters:
-    - key: p
+    - key: find_desc
       property: name
-    - key: addr
-      property: address
+    - key: find_loc
+      property: small_address
   mapping:
     name:
-      css: '.lrr-title.M-0.Fz-32 a'
-    address:
-      css: '.lrr-info.Grid .lrr-loc.NoLinkColor.Fz-m'
+      css: '#super-container > div > div.clearfix.layout-block.layout-a.scroll-map-container.search-results-block > div.column.column-alpha > div > div.search-results-content > ul:nth-child(2) > li.regular-search-result > div > div > div.main-attributes > div > div.media-story > h3 > span > a > span'
+    full_address:
+      css: '#super-container > div > div.clearfix.layout-block.layout-a.scroll-map-container.search-results-block > div.column.column-alpha > div > div.search-results-content > ul:nth-child(2) > li.regular-search-result > div > div > div.secondary-attributes > address'
+      options: html
     phone_number:
-      css: '.lrr-phone.M-0'
+      css: '#super-container > div > div.clearfix.layout-block.layout-a.scroll-map-container.search-results-block > div.column.column-alpha > div > div.search-results-content > ul:nth-child(2) > li.regular-search-result > div > div > div.secondary-attributes > span.biz-phone'
     url:
-      xpath: '//*[@class="lrr-title M-0 Fz-32"]/a/@href'
+      xpath: '//*[@class="search-results-content"]//*[@class="regular-search-result"]//a[@class="biz-name"]/@href'

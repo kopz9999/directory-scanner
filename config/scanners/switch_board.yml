@@ -1,16 +1,16 @@
 settings:
-  base_url: 'https://search.yahoo.com/local/s;_ylt=AjUlJbrCKf75zGMNBKcNgLCGNcIF;_ylv=3'
+  page_url: 'http://www.switchboard.com'
+  base_url: 'http://www.switchboard.com/business'
   parameters:
-    - key: p
+    - key: key
       property: name
-    - key: addr
-      property: address
+    - key: where
+      property: small_address
   mapping:
     name:
-      css: '.lrr-title.M-0.Fz-32 a'
-    address:
-      css: '.lrr-info.Grid .lrr-loc.NoLinkColor.Fz-m'
-    phone_number:
-      css: '.lrr-phone.M-0'
+      css: '.map-entries > li:first .primary-content p.name'
+    full_address:
+      css: '.map-entries > li:first .secondary-content .first div span'
+      options: list
     url:
-      xpath: '//*[@class="lrr-title M-0 Fz-32"]/a/@href'
+      xpath: '//*[@class="map-entries"]//li[0]//a[@class="link-wrapper clickstream-link"]/@href'

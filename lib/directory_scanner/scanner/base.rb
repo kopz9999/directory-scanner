@@ -23,20 +23,41 @@ module DirectoryScanner
           base_url build_url
           path "/"
           mapping_hash.each do |k,v|
-            self.send k, v
+            opt = v.delete(:options)
+            if opt.blank?
+              self.send k, v
+            else
+              self.send k, v, opt.to_sym
+            end
           end
         end
-        Directory.new result_hash
+        unless result_hash['name'].blank?
+          result = Directory.new result_hash
+          result.apply_settings self.settings
+          result
+        else
+          nil
+        end
       end
 
       # @param [Directory] directory
       # @return [Directory]
       def query_url(directory)
         hash = {}
+        uri = URI.parse(self.base_url)
         self.parameters.each do |param_hash|
-          hash[ param_hash[:key] ] = directory.send("#{param_hash[:property]}")
+          properties = Array.wrap(param_hash[:property])
+          param_key = param_hash[:key]
+          values = []
+          properties.each { |prop| values << directory.send(prop) }
+          hash[param_key] = values.join(' ')
         end
-        "#{self.base_url}?#{hash.to_query}"
+        if uri.query.nil?
+          uri.query = hash.to_query
+        else
+          uri.query += "&#{hash.to_query}"
+        end
+        uri.to_s
       end
 
       # @return [String]
