@@ -1,4 +1,5 @@
 settings:
+  display: 'SuperPages'
   base_url: 'https://search.yahoo.com/local/s;_ylt=AjUlJbrCKf75zGMNBKcNgLCGNcIF;_ylv=3'
   parameters:
     - key: p

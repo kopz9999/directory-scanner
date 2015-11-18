@@ -1,4 +1,5 @@
 settings:
+  display: 'MapQuest'
   page_url: 'http://www.mapquest.com'
   base_url: 'http://www.mapquest.com/search/results'
   html_fields:

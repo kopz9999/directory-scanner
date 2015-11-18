@@ -1,0 +1,18 @@
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Phone Number</th>
+    <th>Directory</th>
+    <th>URL</th>
+  </tr>
+  <% @results.each do |directory| %>
+    <tr>
+      <td><%= directory.name %></td>
+      <td><%= directory.display_address %></td>
+      <td><%= directory.phone_number %></td>
+      <td><%= directory.current_scanner.display_name %></td>
+      <td><%= link_to directory.name, directory.url %></td>
+    </tr>
+  <% end  %>
+</table>

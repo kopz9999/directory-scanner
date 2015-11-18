@@ -4,6 +4,17 @@ module DirectoryScanner
     class InvalidScanner < StandardError
     end
 
+    # @return [Hash<Symbol,Object>]
+    attr_accessor :settings,
+      # @return [Hash<Symbol,Object>]
+      :available_scanners
+
+    def initialize
+      path = File.join(Rails.root.to_s, 'config', 'scanners.yml')
+      self.settings = YAML.load_file(path).deep_symbolize_keys!
+      self.available_scanners = self.settings.fetch(:scanners)
+    end
+
     # @param [Directory] directory
     # @param [Symbol] scanner_key
     def search(directory, scanner_key)

@@ -2,8 +2,6 @@ module DirectoryScanner
   module Scanner
     class Base
 
-      protected
-
       attr_accessor :settings
 
       public
@@ -33,7 +31,7 @@ module DirectoryScanner
         end
         unless result_hash['name'].blank?
           result = Directory.new result_hash
-          result.apply_settings self.settings
+          result.apply_settings self
           result
         else
           nil
@@ -58,6 +56,10 @@ module DirectoryScanner
           uri.query += "&#{hash.to_query}"
         end
         uri.to_s
+      end
+
+      def display_name
+        @display_name ||= self.settings[:display]
       end
 
       # @return [String]

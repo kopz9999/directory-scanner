@@ -1,22 +1,32 @@
 class Directory
+
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+
   # @return [String]
   attr_accessor :name,
-  # @return [String]
+    # @return [String]
     :address,
-  # @return [String]
+    # @return [String]
     :city,
-  # @return [String]
+    # @return [String]
     :state,
-  # @return [String]
+    # @return [String]
     :zip,
-  # @return [String]
+    # @return [String]
     :full_address,
-  # @return [String]
+    # @return [String]
     :phone_number,
-  # @return [String]
-    :url
+    # @return [String]
+    :url,
+    # @return [DirectoryScanner::Scanner::Base]
+    :current_scanner
 
-  def initialize args
+  def persisted?
+    false
+  end
+
+  def initialize(args = {})
     args.each do |k,v|
       instance_variable_set("@#{k}", v) unless v.nil?
     end
@@ -48,11 +58,17 @@ class Directory
     @reviews ||= []
   end
 
-  # @return [Hash<Symbol,Object>]
-  def apply_settings(settings)
-    page_url = settings[:page_url]
+  # TODO: Remove
+  def display_address
+    self.address || self.full_address
+  end
+
+  # @param [DirectoryScanner::Scanner::Base] scanner
+  def apply_settings(scanner)
+    self.current_scanner = scanner
+    page_url = self.current_scanner.settings[:page_url]
     self.url = "#{page_url}#{self.url}" unless page_url.blank?
-    if html_fields = settings[:html_fields]
+    if html_fields = self.current_scanner.settings[:html_fields]
       html_fields.each do |field|
         val = self.send(field)
         results = val.split(/<br\s*[\/]?>/)

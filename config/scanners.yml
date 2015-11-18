@@ -1,0 +1,8 @@
+scanners:
+  - yahoo
+  - foursquare
+  - yelp
+#  - white_pages
+#  - switch_board
+#  - '411'
+  - map_quest

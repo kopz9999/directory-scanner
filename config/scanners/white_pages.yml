@@ -1,4 +1,5 @@
 settings:
+  display: 'WhitePages'
   page_url: 'http://www.whitepages.com'
   base_url: 'http://www.whitepages.com/business'
   parameters:

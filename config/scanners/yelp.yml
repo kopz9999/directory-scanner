@@ -1,4 +1,5 @@
 settings:
+  display: 'Yelp'
   page_url: 'http://www.yelp.com'
   html_fields:
     - full_address

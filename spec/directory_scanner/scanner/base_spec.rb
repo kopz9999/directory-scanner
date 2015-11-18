@@ -9,9 +9,9 @@ describe DirectoryScanner::Scanner::Base do
       DirectoryScanner::Scanner::Base.new configuration_path
     }
     subject do
-      instance.search_directory directoy
+      instance.search_directory directory
     end
-    let(:directoy) {
+    let(:directory) {
       Directory.new(name: 'Encore India', city: 'Simi Valley', state: 'CA')
     }
     context 'with yahoo' do
@@ -27,7 +27,7 @@ describe DirectoryScanner::Scanner::Base do
       end
     end
     context 'with foursquare' do
-      let(:directoy) {
+      let(:directory) {
         Directory.new(name: 'Encore India', address: '5924 E Los Angeles Ave',
           city: 'Simi Valley', state: 'CA')
       }
