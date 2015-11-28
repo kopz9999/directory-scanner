@@ -1,4 +1,4 @@
-class Directory
+class BusinessLocal
 
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -48,9 +48,9 @@ class Directory
     @medium_address||= [self.address, self.city, self.state].compact.join(', ')
   end
 
-  # @return [Array<DirectoryImage>]
-  def directory_images
-    @directory_images ||= []
+  # @return [Array<BusinessLocalImage>]
+  def business_local_images
+    @business_local_images ||= []
   end
 
   # @return [Array<Review>]

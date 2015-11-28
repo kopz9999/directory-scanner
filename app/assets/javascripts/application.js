@@ -11,6 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require sb-admin/bootstrap
+//= require sb-admin/metisMenu
+//= require sb-admin/sb-admin-2

@@ -1,0 +1,46 @@
+<%= form_for(@business_local, url: {action: :search},
+      html: {role: :form, class: 'form-horizontal'}) do |f| %>
+  <div class="form-group">
+    <%= f.label :name, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :name, class: "form-control",
+        placeholder: "Walmart, Target, Kroger" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :address, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :address, class: "form-control",
+        placeholder: "105 Park Ave" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :city, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :city, class: "form-control",
+        placeholder: "Dallas, Seattle, New York" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :state, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :state, class: "form-control",
+        placeholder: "OH, TX, AZ" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :zip, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :zip, class: "form-control",
+        placeholder: "45236, 45242" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone_number, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :phone_number, class: "form-control",
+        placeholder: "800-925-6278" %>
+    </div>
+  </div>
+  <%= f.submit 'Search', class: 'btn btn-primary btn-lg btn-block' %>
+<% end %>

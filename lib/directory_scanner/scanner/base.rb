@@ -2,7 +2,7 @@ module DirectoryScanner
   module Scanner
     class Base
 
-      attr_accessor :settings
+      attr_accessor :settings, :directory
 
       public
 
@@ -12,11 +12,11 @@ module DirectoryScanner
         self.settings = conf[:settings] || {}
       end
 
-      # @param [Directory] directory
-      # @return [Directory]
-      def search_directory(directory)
+      # @param [BusinessLocal] business_local
+      # @return [BusinessLocal]
+      def search_business_local(business_local)
         mapping_hash = self.mapping
-        build_url = query_url(directory)
+        build_url = query_url(business_local)
         result_hash = Wombat.crawl do
           base_url build_url
           path "/"
@@ -30,7 +30,7 @@ module DirectoryScanner
           end
         end
         unless result_hash['name'].blank?
-          result = Directory.new result_hash
+          result = BusinessLocal.new result_hash
           result.apply_settings self
           result
         else
@@ -38,16 +38,16 @@ module DirectoryScanner
         end
       end
 
-      # @param [Directory] directory
-      # @return [Directory]
-      def query_url(directory)
+      # @param [BusinessLocal] business_local
+      # @return [BusinessLocal]
+      def query_url(business_local)
         hash = {}
         uri = URI.parse(self.base_url)
         self.parameters.each do |param_hash|
           properties = Array.wrap(param_hash[:property])
           param_key = param_hash[:key]
           values = []
-          properties.each { |prop| values << directory.send(prop) }
+          properties.each { |prop| values << business_local.send(prop) }
           hash[param_key] = values.join(' ')
         end
         if uri.query.nil?

@@ -1,0 +1,157 @@
+directories:
+  - name: yahoo
+    display: Yahoo
+    active: true
+  - name: bing
+    display: Bing
+    active: true
+  - name: foursquare
+    display: Foursquare
+    active: true
+  - name: yelp
+    display: Yelp
+    active: true
+  - name: white_pages
+    display: White Pages
+    active: false
+  - name: switch_board
+    display: Switch Board
+    active: false
+  - name: '411'
+    display: '411'
+    active: false
+  - name: map_quest
+    display: Map Quest
+    active: false
+  - name: super_pages
+    display: Super Pages
+    active: false
+  - name: city_search
+    display: City Search
+    active: false
+  - name: local
+    display: Local
+    active: false
+  - name: dex_knows
+    display: Dex Knows
+    active: true
+  - name: merchant_circle
+    display: Merchant Circle
+    active: false
+  - name: ez_local
+    display: EZlocal
+    active: false
+  - name: local_database
+    display: LocalDatabase
+    active: false
+  - name: show_me_local
+    display: ShowMeLocal
+    active: false
+  - name: topix
+    display: Topix
+    active: false
+  - name: city_squares
+    display: City Squares
+    active: false
+  - name: local_pages
+    display: Local Pages
+    active: false
+  - name: mojo_pages
+    display: Mojo Pages
+    active: false
+  - name: yellowise
+    display: Yellowise
+    active: false
+  - name: yellow_moxie
+    display: YellowMoxie
+    active: false
+  - name: get_fave
+    display: GetFave
+    active: false
+  - name: tupalo
+    display: Tupalo
+    active: false
+  - name: avantar
+    display: Avantar
+    active: false
+  - name: airyell
+    display: Airyell
+    active: false
+  - name: white_yellow_pages
+    display: White & Yellow Pages
+    active: false
+  - name: co_pilot
+    display: Co-Pilot
+    active: false
+  - name: navmii
+    display: Navmii
+    active: false
+  - name: where_to
+    display: Where To?
+    active: false
+  - name: chamber_of_commerce
+    display: ChamberofCommerce
+    active: false
+  - name: us_city
+    display: USCity.net
+    active: false
+  - name: yellow_page_city
+    display: YellowPageCity
+    active: false
+  - name: american_towns
+    display: AmericanTowns
+    active: false
+  - name: 8coupons
+    display: 8coupons
+    active: false
+  - name: e_local
+    display: eLocal
+    active: false
+  - name: go_local_247
+    display: GoLocal247
+    active: false
+  - name: ya_sabe
+    display: YaSabe
+    active: false
+  - name: city_maps
+    display: CityMaps
+    active: false
+  - name: citybot
+    display: Citybot
+    active: false
+  - name: yellow_pages_goes_green
+    display: YellowPagesGoesGreen
+    active: false
+  - name: pointcom
+    display: Pointcom
+    active: false
+  - name: ab_local
+    display: ABLocal
+    active: false
+  - name: opendi
+    display: Opendi
+    active: false
+  - name: vote_for_the_best
+    display: VotefortheBest
+    active: false
+  - name: 2_find_local
+    display: 2findlocal
+    active: false
+  - name: my_local_services
+    display: MyLocalServices
+    active: false
+  - name: credibility_review
+    display: Credibility Review
+    active: false
+  - name: insider_pages
+    display: Insider Pages
+    active: false
+  - name: yalwa
+    display: Yalwa
+    active: false
+  - name: brownbook
+    display: Brownbook
+    active: false
+  - name: soleo
+    display: Soleo
+    active: false

@@ -9,10 +9,10 @@ describe DirectoryScanner::Scanner::Base do
       DirectoryScanner::Scanner::Base.new configuration_path
     }
     subject do
-      instance.search_directory directory
+      instance.search_business_local business_local
     end
-    let(:directory) {
-      Directory.new(name: 'Encore India', city: 'Simi Valley', state: 'CA')
+    let(:business_local) {
+      BusinessLocal.new(name: 'Encore India', city: 'Simi Valley', state: 'CA')
     }
     context 'with yahoo' do
       let(:configuration_path) { File.join(scanners_path, 'yahoo.yml') }
@@ -27,9 +27,9 @@ describe DirectoryScanner::Scanner::Base do
       end
     end
     context 'with foursquare' do
-      let(:directory) {
-        Directory.new(name: 'Encore India', address: '5924 E Los Angeles Ave',
-          city: 'Simi Valley', state: 'CA')
+      let(:business_local) {
+        BusinessLocal.new(name: 'Encore India',
+          address: '5924 E Los Angeles Ave', city: 'Simi Valley', state: 'CA')
       }
       let(:configuration_path) { File.join(scanners_path, 'foursquare.yml') }
       it 'brings back correct result' do
