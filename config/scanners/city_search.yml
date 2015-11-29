@@ -1,0 +1,15 @@
+settings:
+  page_url: 'http://www.citysearch.com'
+  base_url: 'http://www.citysearch.com/search'
+  parameters:
+    - key: what
+      property: name
+    - key: where
+      property: small_address
+  mapping:
+    name:
+      xpath: '//*[@id="naturalResults.1.name"]/div[1]/div/div/h4/span'
+    full_address:
+      css: '//*[@id="naturalResults.1.address"]'
+    url:
+      xpath: '//*[@id="naturalResults.1.name"]/@href'

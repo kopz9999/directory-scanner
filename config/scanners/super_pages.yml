@@ -1,0 +1,16 @@
+settings:
+  base_url: 'http://yellowpages.superpages.com/listings.jsp?CS=L&MCBP=true&STYPE=AD&CB=&PP=&RR=&C=&x=54&y=30&search=Find+It'
+  parameters:
+    - key: N
+      property: name
+    - key: E
+      property: address
+    - key: L
+      property: small_address
+  mapping:
+    name:
+      xpath: '//*[@id="0"]/h3'
+    full_address:
+      css: '//*[@id="listing1"]/div/div[1]/p'
+    url:
+      xpath: '//*[@id="0"]/@href'

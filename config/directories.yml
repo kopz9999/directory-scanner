@@ -25,13 +25,13 @@ directories:
     active: false
   - name: super_pages
     display: Super Pages
-    active: false
+    active: true
   - name: city_search
     display: City Search
-    active: false
+    active: true
   - name: local
     display: Local
-    active: false
+    active: true
   - name: dex_knows
     display: Dex Knows
     active: true

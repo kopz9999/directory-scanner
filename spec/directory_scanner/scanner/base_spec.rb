@@ -100,6 +100,65 @@ describe DirectoryScanner::Scanner::Base do
           .to eq 'http://www.mapquest.com/us/california/business-simi-valley/encore-india-345867169'
       end
     end
+    context 'with super_pages' do
+      let(:business_local) {
+        BusinessLocal.new(name: 'Encore India',
+          address: '5924 East Los Angeles Ave', city: 'Simi Valley',
+          state: 'CA')
+      }
+      let(:directory) { DirectoryScanner::Directory.new(name: 'super_pages') }
+      it 'brings back correct result' do
+        expect(subject).not_to be_blank
+        expect(subject.name).to eq 'Encore India'
+        expect(subject.full_address.gsub("\n"," "))
+          .to eq '5924 E Los Angeles Ave,  Simi Valley, CA 93063  93063'
+        expect(subject.url)
+          .to eq 'http://www.superpages.com/bp/Simi-Valley-CA/Encore-India-L2584373262.htm'
+      end
+    end
+    context 'with city_search' do
+      let(:directory) { DirectoryScanner::Directory.new(name: 'city_search') }
+      it 'brings back correct result' do
+        expect(subject).not_to be_blank
+        expect(subject.name).to eq 'Encore India'
+        expect(subject.full_address.gsub(/(\n|\r)/,""))
+          .to eq '5924 E Los Angeles Ave, Simi Valley, CA'
+        expect(subject.url)
+          .to match 'http://www.citysearch.com/profile/626279594/simi_valley_ca/encore_india.html'
+      end
+    end
+    context 'with local' do
+      # TODO: Customization
+      let(:directory) { DirectoryScanner::Directory.new(name: 'local') }
+      let(:business_local) {
+        BusinessLocal.new(name: 'Encore Repair Services',
+          city: 'Simi Valley', state: 'CA')
+      }
+      it 'brings back correct result' do
+        expect(subject).not_to be_blank
+        expect(subject.name).to eq 'Encore Repair Services'
+        expect(subject.full_address.gsub(/(\n|\r)/,""))
+          .to eq '5924 E Los Angeles Ave, Simi Valley, CA'
+        expect(subject.url)
+          .to match 'http://www.citysearch.com/profile/626279594/simi_valley_ca/encore_india.html'
+      end
+    end
+    context 'with dex_knows' do
+      # TODO: Customization
+      let(:directory) { DirectoryScanner::Directory.new(name: 'dex_knows') }
+      let(:business_local) {
+        BusinessLocal.new(name: 'Walmart', city: 'Simi Valley', state: 'CA')
+      }
+      it 'brings back correct result' do
+        expect(subject).not_to be_blank
+        expect(subject.name).to eq 'Walmart'
+        expect(subject.address.gsub(/(\n)/,""))
+          .to eq '255 Cochran St,'
+        expect(subject.phone_number).to eq '(805) 581-1666'
+        expect(subject.url)
+          .to match 'http://www.dexknows.com/business_profiles/walmart_simi_valley-l901718860'
+      end
+    end
 
   end
 end

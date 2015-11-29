@@ -1,0 +1,22 @@
+settings:
+  base_url: 'http://www.dexknows.com/search'
+  parameters:
+    - key: what
+      property: name
+    - key: where
+      property: small_address
+  mapping:
+    name:
+      css: '#listing-name-1'
+    address:
+      css: '#listing-street-1'
+    city:
+      css: '#listing-city-1'
+    state:
+      css: '#listing-state-1'
+    zip:
+      css: '#listing-zip-1'
+    phone_number:
+      css: '#listing-phone-1'
+    url:
+      xpath: '//*[@id="listing-name-1"]/@href'

@@ -31,7 +31,8 @@ module DirectoryScanner
             end
           end
         end
-        unless result_hash['name'].blank?
+        business_name = result_hash['name']
+        if !business_name.blank? && business_name == business_local.name
           result = BusinessLocal.new result_hash
           result.apply_settings self.settings
           result

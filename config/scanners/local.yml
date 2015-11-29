@@ -1,0 +1,13 @@
+settings:
+  page_url: 'http://www.local.com'
+  base_url: 'http://www.local.com/business/results/'
+  parameters:
+    - key: keyword
+      property: name
+    - key: location
+      property: small_address
+  mapping:
+    name:
+      css: '.bucket .listing:first h2.title.fn.org'
+    full_address:
+      xpath: '.bucket .listing:first .adr.fl'
