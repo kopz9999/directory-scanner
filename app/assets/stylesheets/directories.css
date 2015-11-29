@@ -1,0 +1,4 @@
+#api-results span.loading, #api-results span.success, #api-results span.error,
+  #api-results span.not-found {
+  display: none;
+}

@@ -7,13 +7,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped">
+                    <table id="api-results"
+                      class="table table-bordered table-hover table-striped">
                         <thead>
                           <tr>
                             <th>Name</th>
                             <th>Address</th>
                             <th>Phone Number</th>
-                            <th>Directory</th>
                             <th>URL</th>
                             <th>Status</th>
                           </tr>
@@ -21,16 +21,32 @@
                         <tbody>
                           <% DirectoryScanner::Manager.instance
                               .directories.each do |d| %>
-                            <tr id='resuls-<%= d.name %>'>
-                              <td> - </td>
-                              <td> - </td>
-                              <td> - </td>
-                              <td>
-                                <%= image_tag("scanners/partner-logo-#{d.name}") %>
-                                <%= d.display %>
+                            <tr id='result-<%= d.html_name %>'>
+                              <td class='business-name'> - </td>
+                              <td class='business-address'> - </td>
+                              <td class='business-phone'> - </td>
+                              <td class='business-url'>
+                                <%=
+                                  image_tag("scanners/partner-logo-#{d.name}")
+                                %>
+                                <a target='_blank' href='#'>
+                                  <%= d.display %>
+                                </a>
                               </td>
-                              <td> - </td>
-                              <td> - </td>
+                              <td class='search-result'>
+                                <span class='error label label-danger'>
+                                  Error
+                                </span>
+                                <span class='not-found label label-warning'>
+                                  Not Found
+                                </span>
+                                <span class='loading'>
+                                  <%= image_tag("default.gif") %>
+                                </span>
+                                <span class='success label label-success'>
+                                  Found
+                                </span>
+                              </td>
                             </tr>
                           <% end %>
                         </tbody>

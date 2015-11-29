@@ -10,5 +10,8 @@ module DirectoryScanner
     def key
       @key ||= self.name.to_sym
     end
+    def html_name
+      @html_name ||= self.name.dasherize
+    end
   end
 end

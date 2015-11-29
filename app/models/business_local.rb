@@ -2,6 +2,7 @@ class BusinessLocal
 
   extend ActiveModel::Naming
   include ActiveModel::Conversion
+  include ActiveModel::Serializers::JSON
 
   # @return [String]
   attr_accessor :name,
@@ -18,7 +19,9 @@ class BusinessLocal
     # @return [String]
     :phone_number,
     # @return [String]
-    :url
+    :url,
+    # @return [Hash<Symbol,Object>]
+    :attributes
 
   def persisted?
     false
@@ -28,6 +31,7 @@ class BusinessLocal
     args.each do |k,v|
       instance_variable_set("@#{k}", v) unless v.nil?
     end
+    self.attributes = args
   end
 
   def small_address
@@ -59,6 +63,10 @@ class BusinessLocal
   # TODO: Remove
   def display_address
     self.address || self.full_address
+  end
+
+  def as_json(options={})
+    super(options.merge(methods: :display_address))
   end
 
   # @param [Hash<Symbol,Object>] settings

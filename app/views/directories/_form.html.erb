@@ -1,5 +1,5 @@
-<%= form_for(@business_local, url: {action: :search},
-      html: {role: :form, class: 'form-horizontal'}) do |f| %>
+<%= form_for(@business_local, url: {controller: 'api/directories',
+      action: :search}, html: {role: :form, class: 'form-horizontal'}) do |f| %>
   <div class="form-group">
     <%= f.label :name, class: 'col-sm-3 control-label' %>
     <div class="col-sm-9">

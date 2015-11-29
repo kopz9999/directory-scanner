@@ -1,3 +1,6 @@
+<%= content_for :page_stylesheets do %>
+  <%= stylesheet_link_tag 'directories' %>
+<% end %>
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header"><%= t 'directories.actions.search' %></h1>
@@ -22,6 +25,16 @@
       <%= render partial: 'list' %>
     </div>
   </div>
-
   <!-- /.row -->
 </div>
+<%= content_for :page_scripts do %>
+  <%= javascript_include_tag 'directories' %>
+  <script type="text/javascript">
+    window.searchClient = new Directories.SearchClient(
+      <%= raw(DirectoryScanner::Manager.instance
+            .directories.to_json(methods: :html_name)) %>,
+      $('#api-results'), $('#new_business_local'),
+      '<%= url_for controller: 'api/directories', action: :search %>'
+    );
+  </script>
+<% end %>
