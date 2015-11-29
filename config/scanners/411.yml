@@ -1,5 +1,4 @@
 settings:
-  display: '411'
   page_url: 'http://www.411.com'
   base_url: 'http://www.411.com/business'
   parameters:

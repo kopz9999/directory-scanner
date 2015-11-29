@@ -3,7 +3,11 @@ module DirectoryScanner
 
     include Singleton
 
-    class InvalidScanner < StandardError
+    class UnknownDirectory < StandardError
+    end
+    class InactiveDirectory < StandardError
+    end
+    class InvalidDirectory < StandardError
     end
 
     # @return [Hash<Symbol,Object>]
@@ -18,14 +22,10 @@ module DirectoryScanner
     end
 
     # @param [BusinessLocal] business_local
-    # @param [Symbol] scanner_key
-    def search(business_local, scanner_key)
-      scanner = Scanner.build File.join(self.configuration_path,
-        "#{scanner_key.to_s}.yml")
-      unless scanner.nil?
+    # @param [Symbol] directory_key
+    def search(business_local, directory_key)
+      assert_scanner directory_key do |scanner|
         scanner.search_business_local business_local
-      else
-        throw InvalidScanner, "Scanner #{scanner_key} not found"
       end
     end
 
@@ -34,6 +34,25 @@ module DirectoryScanner
     end
 
     private
+
+    def assert_scanner(directory_key)
+      directory = self.directories.find{ |dir| dir.key == directory_key }
+      if directory.nil?
+        raise UnknownDirectory, "Directory #{directory_key} is unknown"
+      else
+        if directory.active?
+          path = File.join(self.configuration_path, "#{directory.name}.yml")
+          if File.exist? path
+            yield Scanner.build path, directory
+          else
+            raise(InvalidDirectory,
+              "Directory #{directory_key} is not configured")
+          end
+        else
+          raise InactiveDirectory, "Directory #{directory_key} is inactive"
+        end
+      end
+    end
 
     def init_directories
       directories_arr = self.settings.fetch(:directories)

@@ -6,8 +6,8 @@ module DirectoryScanner
     class << self
 
       # @param [String] scanner_path
-      def build(scanner_path)
-        Scanner::Base.new scanner_path
+      def build(scanner_path, directory)
+        Scanner::Base.new scanner_path, directory
       end
 
     end

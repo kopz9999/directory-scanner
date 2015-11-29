@@ -7,9 +7,11 @@ module DirectoryScanner
       public
 
       # @param [String] scanner_path
-      def initialize(scanner_path)
+      # @param [DirectoryScanner::Directory] directory
+      def initialize(scanner_path, directory)
         conf = YAML::load_file(scanner_path).deep_symbolize_keys!
         self.settings = conf[:settings] || {}
+        self.directory = directory
       end
 
       # @param [BusinessLocal] business_local
@@ -31,7 +33,7 @@ module DirectoryScanner
         end
         unless result_hash['name'].blank?
           result = BusinessLocal.new result_hash
-          result.apply_settings self
+          result.apply_settings self.settings
           result
         else
           nil
@@ -56,10 +58,6 @@ module DirectoryScanner
           uri.query += "&#{hash.to_query}"
         end
         uri.to_s
-      end
-
-      def display_name
-        @display_name ||= self.settings[:display]
       end
 
       # @return [String]

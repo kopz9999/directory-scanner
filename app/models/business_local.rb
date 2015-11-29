@@ -18,9 +18,7 @@ class BusinessLocal
     # @return [String]
     :phone_number,
     # @return [String]
-    :url,
-    # @return [DirectoryScanner::Scanner::Base]
-    :current_scanner
+    :url
 
   def persisted?
     false
@@ -63,12 +61,11 @@ class BusinessLocal
     self.address || self.full_address
   end
 
-  # @param [DirectoryScanner::Scanner::Base] scanner
-  def apply_settings(scanner)
-    self.current_scanner = scanner
-    page_url = self.current_scanner.settings[:page_url]
+  # @param [Hash<Symbol,Object>] settings
+  def apply_settings(settings)
+    page_url = settings[:page_url]
     self.url = "#{page_url}#{self.url}" unless page_url.blank?
-    if html_fields = self.current_scanner.settings[:html_fields]
+    if html_fields = settings[:html_fields]
       html_fields.each do |field|
         val = self.send(field)
         results = val.split(/<br\s*[\/]?>/)

@@ -1,5 +1,4 @@
 settings:
-  display: 'Switchboard'
   page_url: 'http://www.switchboard.com'
   base_url: 'http://www.switchboard.com/business'
   parameters:

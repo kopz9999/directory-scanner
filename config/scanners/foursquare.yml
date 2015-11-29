@@ -1,5 +1,4 @@
 settings:
-  display: 'Foursquare'
   page_url: 'https://foursquare.com'
   base_url: 'https://foursquare.com/explore?mode=url'
   parameters:

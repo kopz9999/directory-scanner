@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 describe DirectoryScanner::Scanner::Base do
-  describe '#search_directory' do
+  describe '#search_business_local' do
     let(:scanners_path) {
       File.join(Rails.root, 'config', 'scanners')
     }
     let(:instance) {
-      DirectoryScanner::Scanner::Base.new configuration_path
+      DirectoryScanner::Scanner::Base.new configuration_path, directory
     }
     subject do
       instance.search_business_local business_local
@@ -14,8 +14,11 @@ describe DirectoryScanner::Scanner::Base do
     let(:business_local) {
       BusinessLocal.new(name: 'Encore India', city: 'Simi Valley', state: 'CA')
     }
+    let(:configuration_path) {
+      File.join(scanners_path, "#{directory.name}.yml")
+    }
     context 'with yahoo' do
-      let(:configuration_path) { File.join(scanners_path, 'yahoo.yml') }
+      let(:directory) { DirectoryScanner::Directory.new(name: 'yahoo') }
       it 'brings back correct result' do
         expect(subject).not_to be_blank
         expect(subject.name).to eq 'Encore India'
@@ -31,7 +34,7 @@ describe DirectoryScanner::Scanner::Base do
         BusinessLocal.new(name: 'Encore India',
           address: '5924 E Los Angeles Ave', city: 'Simi Valley', state: 'CA')
       }
-      let(:configuration_path) { File.join(scanners_path, 'foursquare.yml') }
+      let(:directory) { DirectoryScanner::Directory.new(name: 'foursquare') }
       it 'brings back correct result' do
         expect(subject).not_to be_blank
         expect(subject.name).to eq 'Encore India'
@@ -42,7 +45,7 @@ describe DirectoryScanner::Scanner::Base do
       end
     end
     context 'with yelp' do
-      let(:configuration_path) { File.join(scanners_path, 'yelp.yml') }
+      let(:directory) { DirectoryScanner::Directory.new(name: 'yelp') }
       it 'brings back correct result' do
         expect(subject).not_to be_blank
         expect(subject.name).to eq 'Encore India'
@@ -54,7 +57,7 @@ describe DirectoryScanner::Scanner::Base do
       end
     end
     context 'with white_pages' do
-      let(:configuration_path) { File.join(scanners_path, 'white_pages.yml') }
+      let(:directory) { DirectoryScanner::Directory.new(name: 'white_pages') }
       it 'brings back correct result' do
         expect(subject).not_to be_blank
         expect(subject.name).to eq 'Encore India'
@@ -65,7 +68,7 @@ describe DirectoryScanner::Scanner::Base do
       end
     end
     context 'with switch_board' do
-      let(:configuration_path) { File.join(scanners_path, 'switch_board.yml') }
+      let(:directory) { DirectoryScanner::Directory.new(name: 'switch_board') }
       it 'brings back correct result' do
         expect(subject).not_to be_blank
         expect(subject.name).to eq 'Encore India'
@@ -76,7 +79,7 @@ describe DirectoryScanner::Scanner::Base do
       end
     end
     context 'with 411' do
-      let(:configuration_path) { File.join(scanners_path, '411.yml') }
+      let(:directory) { DirectoryScanner::Directory.new(name: '411') }
       it 'brings back correct result' do
         expect(subject).not_to be_blank
         expect(subject.name).to eq 'Encore India'
@@ -87,7 +90,7 @@ describe DirectoryScanner::Scanner::Base do
       end
     end
     context 'with map_quest' do
-      let(:configuration_path) { File.join(scanners_path, 'map_quest.yml') }
+      let(:directory) { DirectoryScanner::Directory.new(name: 'map_quest') }
       it 'brings back correct result' do
         expect(subject).not_to be_blank
         expect(subject.name).to eq 'Encore India'
